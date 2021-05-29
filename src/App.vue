@@ -50,6 +50,7 @@
       </b-row>
 
     </div>
+    <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com">Fred</a>.</div>
   </b-container>
 </template>
 
