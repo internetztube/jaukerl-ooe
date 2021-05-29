@@ -43,6 +43,7 @@
             <div class="card-body">
               <h5>{{ appointment.startDate | moment("DD.MM.YYYY HH:MM (dddd)") }}</h5>
               <div>{{ appointment.authority.name }}</div>
+              <div v-if="categories[appointment.categoryId]">{{ categories[appointment.categoryId] }}</div>
             </div>
           </div>
         </b-col>
@@ -63,7 +64,11 @@
         loading: false,
         appointments: [],
         authorities: [],
-        fetchedAt: null
+        fetchedAt: null,
+        categories: {
+          9: 'Biontech / Pfizer',
+          12: 'Johnson & Johnson',
+        }
       }
     },
     computed: {
