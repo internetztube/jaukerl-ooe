@@ -19,7 +19,7 @@
     </p>
     <p>
       <b>Wenn du schon einen Termin hast,</b> registriere dich mit den selben Daten einfach nochmal. Wenn du einen besseren Termin gefunden hast, den alten absagen und danach direkt den neuen Termin buchen.
-      Absagen kannst du den Termin mit dem Link aus der E-Mail deiner alten Buchung. Solange du den alten Termin nicht abgesagt hast, kannst du auch keinen neuen Termin buchen. Angaben ohne Gewähr.
+      Absagen kannst du den Termin mit dem Link aus der E-Mail deiner alten Buchung. Solange du den alten Termin nicht abgesagt hast, kannst du auch keinen neuen Termin buchen. Alle Angaben ohne Gewähr.
     </p>
 
     <div v-if="loading">Lade Daten... (dauert a bissl)</div>
