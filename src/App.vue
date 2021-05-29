@@ -11,7 +11,7 @@
 
     <h1 class="mt-5">Alle Impftermine von ooe-impft.at! 💉</h1>
 
-    <div v-if="loading">Lade Daten...</div>
+    <div v-if="loading">Lade Daten... (dauert a bissl)</div>
     <div v-else>
       <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt | moment("DD.MM.YYYY HH:mm (dddd)") }}</div>
       <b-form-group label="Standorte:">
