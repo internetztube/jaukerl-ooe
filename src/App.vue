@@ -50,7 +50,14 @@
       </b-row>
 
     </div>
-    <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com">Fred</a>.</div>
+    <b-row>
+      <b-col md="6">
+        <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com">Fred</a>.</div>
+      </b-col>
+      <b-col md="6" style="text-align: right;">
+        Fork me on <a href="https://github.com/internetztube/ooe-impft-dates-overview" target="_blank">Github</a>!
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
