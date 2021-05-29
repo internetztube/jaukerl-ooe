@@ -4,7 +4,7 @@
 
     <div v-if="loading">Lade Daten...</div>
     <div v-else>
-      <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt  | moment("DD.MM.YYYY HH:MM (dddd)") }}</div>
+      <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt | moment("DD.MM.YYYY HH:mm (dddd)") }}</div>
       <b-form-group label="Standorte:">
         <b-form-checkbox-group id="authorities" v-model="selectedAuthorities" name="authorities">
           <b-row align-v="stretch">
@@ -41,7 +41,7 @@
         <b-col sm="6" md="4" lg="3" v-for="(appointment, index) in filteredAppointments" :key="index">
           <div class="card mb-4">
             <div class="card-body">
-              <h5>{{ appointment.startDate | moment("DD.MM.YYYY HH:MM (dddd)") }}</h5>
+              <h5>{{ appointment.startDate | moment("DD.MM.YYYY HH:mm (dddd)") }}</h5>
               <div>{{ appointment.authority.name }}</div>
               <div v-if="categories[appointment.categoryId]">{{ categories[appointment.categoryId] }}</div>
             </div>
