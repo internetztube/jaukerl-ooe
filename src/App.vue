@@ -68,7 +68,7 @@
           bei
           <span v-if="selectedAuthorities.length === 1">einem Standort</span>
           <span v-else> {{ selectedAuthorities.length }} Standorten</span>
-          Standorten gefunden!
+          gefunden!
         </span>
       </h2>
       <b-row>
