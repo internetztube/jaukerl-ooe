@@ -110,6 +110,8 @@
         fetchedAt: null,
         categories: {
           9: 'Biontech / Pfizer',
+          10: 'Moderna',
+          11: 'AstraZeneca',
           12: 'Johnson & Johnson',
         }
       }
