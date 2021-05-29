@@ -44,6 +44,7 @@
               <h5>{{ appointment.startDate | moment("DD.MM.YYYY HH:mm (dddd)") }}</h5>
               <div>{{ appointment.authority.name }}</div>
               <div v-if="categories[appointment.categoryId]">{{ categories[appointment.categoryId] }}</div>
+              <div><b>Freie Termine:</b> {{ appointment.freeSlots }}</div>
             </div>
           </div>
         </b-col>
