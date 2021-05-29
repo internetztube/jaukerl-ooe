@@ -1,6 +1,15 @@
 <template>
-  <b-container class="my-5">
-    <h1>Alle Impftermine von ooe-impft.at! 💉</h1>
+  <b-container class="mt-1 mb-5">
+    <b-row>
+      <b-col md="6">
+        <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com" target="_blank">Fred</a>.</div>
+      </b-col>
+      <b-col md="6" style="text-align: right;">
+        Fork me on <a href="https://github.com/internetztube/ooe-impft-dates-overview" target="_blank">Github</a>!
+      </b-col>
+    </b-row>
+
+    <h1 class="mt-5">Alle Impftermine von ooe-impft.at! 💉</h1>
 
     <div v-if="loading">Lade Daten...</div>
     <div v-else>
@@ -51,9 +60,9 @@
       </b-row>
 
     </div>
-    <b-row>
+    <b-row v-if="!loading">
       <b-col md="6">
-        <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com">Fred</a>.</div>
+        <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com" target="_blank">Fred</a>.</div>
       </b-col>
       <b-col md="6" style="text-align: right;">
         Fork me on <a href="https://github.com/internetztube/ooe-impft-dates-overview" target="_blank">Github</a>!
