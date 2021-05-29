@@ -43,7 +43,12 @@
         <span v-if="!selectedAuthorities.length">Wähle mindestens einen Standort aus!</span>
         <span v-else-if="!filteredAppointments.length">Leider wurde keine Termine gefunden! 😭</span>
         <span v-else>
-          {{ filteredAppointments.length }} Termine bei {{ selectedAuthorities.length }} Standorten gefunden!
+          <span v-if="filteredAppointments.length === 1">Ein Termin</span>
+          <span v-else>{{ filteredAppointments.length }} Termine</span>
+          bei
+          <span v-if="selectedAuthorities.length === 1">einem Standort</span>
+          <span v-else> {{ selectedAuthorities.length }} Standorten</span>
+          Standorten gefunden!
         </span>
       </h2>
       <b-row>
