@@ -24,7 +24,7 @@
 
     <div v-if="loading">Lade Daten... (dauert a bissl)</div>
     <div v-else>
-      <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt | moment("DD.MM.YYYY HH:mm (dddd)") }}</div>
+      <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt | moment("DD.MM.YYYY HH:mm:ss (dddd)") }}</div>
       <b-form-group label="Standorte:">
         <b-form-checkbox-group id="authorities" v-model="selectedAuthorities" name="authorities">
           <b-row align-v="stretch">
