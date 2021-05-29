@@ -23,10 +23,10 @@
       </b-form-group>
       <b-row>
         <b-col sm="6">
-          <b-button @click="selectAllAuthorities" variant="primary" class="w-100">Alle Standort auswählen</b-button>
+          <b-button @click="selectAllAuthorities" variant="primary" class="w-100">Alle Standorte auswählen</b-button>
         </b-col>
         <b-col sm="6">
-          <b-button @click="deselectAllAuthorities" variant="outline-primary" class="w-100">Alle Standort abwählen</b-button>
+          <b-button @click="deselectAllAuthorities" variant="outline-primary" class="w-100">Alle Standorte abwählen</b-button>
         </b-col>
       </b-row>
 
