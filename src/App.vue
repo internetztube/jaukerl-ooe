@@ -1,10 +1,10 @@
 <template>
   <b-container class="mt-1 mb-5">
     <b-row>
-      <b-col md="6">
+      <b-col sm="6">
         <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com" target="_blank">Fred</a>.</div>
       </b-col>
-      <b-col md="6" style="text-align: right;">
+      <b-col sm="6" style="text-align: right;">
         Fork me on <a href="https://github.com/internetztube/ooe-impft-dates-overview" target="_blank">Github</a>!
       </b-col>
     </b-row>
@@ -13,13 +13,22 @@
 
     <p>
       Termine kann man hier registrieren: <br>
-      <a href="https://www.land-oberoesterreich.gv.at/files/covid19impfungopen/#/online-terminvereinbarung" target="_blank">
+      <a href="https://www.land-oberoesterreich.gv.at/files/covid19impfungopen/#/online-terminvereinbarung" target="_blank" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
         https://www.land-oberoesterreich.gv.at/files/covid19impfungopen/#/online-terminvereinbarung
       </a>
     </p>
     <p>
       <b>Wenn du schon einen Termin hast,</b> registriere dich mit den selben Daten einfach nochmal. Wenn du einen besseren Termin gefunden hast, den alten absagen und danach direkt den neuen Termin buchen.
-      Absagen kannst du den Termin mit dem Link aus der E-Mail deiner alten Buchung. Solange du den alten Termin nicht abgesagt hast, kannst du auch keinen neuen Termin buchen. Alle Angaben ohne Gewähr.
+      <br>Absagen kannst du den Termin mit dem Link aus der E-Mail deiner alten Buchung. Solange du den alten Termin nicht abgesagt hast, kannst du auch keinen neuen Termin buchen.
+      <br>Alle Angaben ohne Gewähr.
+      <br>
+      <br>
+      Weitere Informationen gibt auf der Website des Landes Oberösterreich:
+      <br>
+      <a href="https://www.land-oberoesterreich.gv.at/ooe-impft.htm">http://ooe-impft.at/</a>
+      <br>
+      <br>
+
     </p>
 
     <div v-if="loading">Lade Daten... (dauert a bissl)</div>
@@ -69,7 +78,7 @@
               <h5>{{ appointment.startDate | moment("DD.MM.YYYY HH:mm (dddd)") }}</h5>
               <div>{{ appointment.authority.name }}</div>
               <div v-if="categories[appointment.categoryId]">{{ categories[appointment.categoryId] }}</div>
-              <div><b>Freie Termine:</b> {{ appointment.freeSlots }}</div>
+              <div><b>Freie Plätze:</b> {{ appointment.freeSlots }}</div>
             </div>
           </div>
         </b-col>
@@ -77,10 +86,10 @@
 
     </div>
     <b-row v-if="!loading">
-      <b-col md="6">
+      <b-col sm="6">
         <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com" target="_blank">Fred</a>.</div>
       </b-col>
-      <b-col md="6" style="text-align: right;">
+      <b-col sm="6" style="text-align: right;">
         Fork me on <a href="https://github.com/internetztube/ooe-impft-dates-overview" target="_blank">Github</a>!
       </b-col>
     </b-row>
