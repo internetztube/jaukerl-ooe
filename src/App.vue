@@ -11,6 +11,17 @@
 
     <h1 class="mt-5">Alle Impftermine von ooe-impft.at! 💉</h1>
 
+    <p>
+      Termine kann man hier registrieren: <br>
+      <a href="https://www.land-oberoesterreich.gv.at/files/covid19impfungopen/#/online-terminvereinbarung" target="_blank">
+        https://www.land-oberoesterreich.gv.at/files/covid19impfungopen/#/online-terminvereinbarung
+      </a>
+    </p>
+    <p>
+      Wenn du schon einen Termin hast, registriere dich mit den selben Daten einfach nochmal. Wenn du einen passenden Termin gefunden hast, den Alten stornieren und direkt den neuen Termin buchen.
+      Absagen kannst du den Termin mit dem Link aus der E-Mail deiner alten Buchung. Bevor du den alten Termin nicht abgesagt hast, kannst du auch keinen neuen Termin buchen.
+    </p>
+
     <div v-if="loading">Lade Daten... (dauert a bissl)</div>
     <div v-else>
       <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt | moment("DD.MM.YYYY HH:mm (dddd)") }}</div>
