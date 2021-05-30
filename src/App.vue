@@ -33,7 +33,7 @@
 
     <div v-if="loading">Lade Daten... (dauert a bissl)</div>
     <div v-else>
-      <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt | moment("DD.MM.YYYY HH:mm:ss (dddd)") }}</div>
+      <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt*1000 | toDateString("DD.MM.YYYY HH:mm:ss (dddd)") }}</div>
       <b-form-group label="Standorte:">
         <b-form-checkbox-group id="authorities" v-model="selectedAuthorities" name="authorities">
           <b-row align-v="stretch">
@@ -75,7 +75,7 @@
         <b-col sm="6" md="4" lg="3" v-for="(appointment, index) in filteredAppointments" :key="index">
           <div class="card mb-4">
             <div class="card-body">
-              <h5>{{ appointment.startDate | moment("DD.MM.YYYY HH:mm (dddd)") }}</h5>
+              <h5>{{ appointment.startDate | toDateString("DD.MM.YYYY HH:mm (dddd)") }}</h5>
               <div>{{ appointment.authority.name }}</div>
               <div v-if="categories[appointment.categoryId]">{{ categories[appointment.categoryId] }}</div>
               <div><b>Freie Plätze:</b> {{ appointment.freeSlots }}</div>
@@ -97,10 +97,13 @@
 </template>
 
 <script>
+ var dayjs = require('dayjs')
+ import { BContainer, BRow, BCol, BFormGroup, BFormCheckboxGroup, BFormCheckbox, BButton } from "bootstrap-vue";
+
   import axios from 'axios'
   export default {
     name: 'App',
-    components: {},
+    components: {BContainer, BRow, BCol, BFormGroup, BFormCheckboxGroup, BFormCheckbox, BButton},
     data () {
       return {
         selectedAuthorities: [],
@@ -114,6 +117,14 @@
           11: 'AstraZeneca',
           12: 'Johnson & Johnson',
         }
+      }
+    },
+    filters: {
+      toDateString: (date, format) => {
+        if(!date | date == 0) {
+          return ''
+        }
+        return dayjs(date).format(format)
       }
     },
     computed: {
