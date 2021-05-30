@@ -39,7 +39,7 @@
           <b-row align-v="stretch">
             <b-col md="4" lg="3" class="mb-3" v-for="(authority, index) in authorities" :key="index">
               <div :class="`card pointer h-100 ${isAuthorityChecked(authority) ? ' text-white bg-primary' : ''}`">
-                <b-form-checkbox :value="authority" class="h-100">
+                <b-form-checkbox :value="authority.id" class="h-100">
                   <div class="card-body h-100">
                     <h5 class="card-title">{{ authority.name }}</h5>
                     {{ authority.adresse }}
@@ -121,7 +121,7 @@
     },
     filters: {
       toDateString: (date, format) => {
-        if(!date | date == 0) {
+        if(!date || date === 0) {
           return ''
         }
         return dayjs(date).format(format)
@@ -132,7 +132,7 @@
         if (this.loading) return []
         return this.appointments.filter((appointment) => {
           for (let i = 0; i < this.selectedAuthorities.length; i++) {
-            if (appointment.authority.id === this.selectedAuthorities[i].id) return true
+            if (appointment.authority.id === this.selectedAuthorities[i]) return true
           }
           return false
         }).sort((appointment1, appointment2) => {
@@ -140,15 +140,20 @@
         })
       }
     },
+    watch: {
+      selectedAuthorities() {
+        window.localStorage.setItem('selectedAuthorities', JSON.stringify(this.selectedAuthorities))
+      }
+    },
     methods: {
       isAuthorityChecked(authority) {
         for (let i = 0; i < this.selectedAuthorities.length; i++) {
-          if (authority.id === this.selectedAuthorities[i].id) return true
+          if (authority.id === this.selectedAuthorities[i]) return true
         }
         return false
       },
       selectAllAuthorities() {
-        this.selectedAuthorities = this.authorities
+        this.selectedAuthorities = this.authorities.map(o => o.id)
       },
       deselectAllAuthorities() {
         this.selectedAuthorities = []
@@ -162,7 +167,17 @@
           this.appointments = response.data.data.appointments
           this.authorities = response.data.data.authorities
           this.fetchedAt = response.data.fetchedAt
-          this.selectedAuthorities = this.authorities
+          const storedSelectedAuthorities = window.localStorage.getItem('selectedAuthorities')
+          try {
+            const value = JSON.parse(storedSelectedAuthorities)
+            if (value && value.length > 0) {
+              this.selectedAuthorities = value
+            } else {
+              this.selectAllAuthorities()
+            }
+          } catch (e) {
+            // foobar
+          }
         })
         .catch(error => console.log(error))
         .finally(() => this.loading = false)
