@@ -14,5 +14,8 @@ module.exports = {
       // extracted common chunks and vendor chunks.
       chunks: ['chunk-vendors', 'chunk-common', 'index']
     },
+  },
+  configureWebpack: {
+    mode: 'production'
   }
 }
