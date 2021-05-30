@@ -4,7 +4,7 @@
       <b-col sm="6">
         <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com" target="_blank">Fred</a>.</div>
       </b-col>
-      <b-col sm="6" style="text-align: right;">
+      <b-col sm="6" class="github">
         Fork me on <a href="https://github.com/internetztube/ooe-impft-dates-overview" target="_blank">Github</a>!
       </b-col>
     </b-row>
@@ -39,8 +39,8 @@
           <b-row align-v="stretch">
             <b-col md="4" lg="3" class="mb-3" v-for="(authority, index) in authorities" :key="index">
               <div :class="`card pointer h-100 ${isAuthorityChecked(authority) ? ' text-white bg-primary' : ''}`">
-                <b-form-checkbox :value="authority">
-                  <div class="card-body">
+                <b-form-checkbox :value="authority" class="h-100">
+                  <div class="card-body h-100">
                     <h5 class="card-title">{{ authority.name }}</h5>
                     {{ authority.adresse }}
                   </div>
@@ -51,10 +51,10 @@
         </b-form-checkbox-group>
       </b-form-group>
       <b-row>
-        <b-col sm="6">
+        <b-col sm="6" class="mb-2">
           <b-button @click="selectAllAuthorities" variant="primary" class="w-100">Alle Standorte auswählen</b-button>
         </b-col>
-        <b-col sm="6">
+        <b-col sm="6" class="mb-2">
           <b-button @click="deselectAllAuthorities" variant="outline-primary" class="w-100">Alle Standorte abwählen</b-button>
         </b-col>
       </b-row>
@@ -89,7 +89,7 @@
       <b-col sm="6">
         <div>Made with ❤️ in Linz by <a href="https://frederickoeberl.com" target="_blank">Fred</a>.</div>
       </b-col>
-      <b-col sm="6" style="text-align: right;">
+      <b-col sm="6" class="github">
         Fork me on <a href="https://github.com/internetztube/ooe-impft-dates-overview" target="_blank">Github</a>!
       </b-col>
     </b-row>
@@ -181,5 +181,15 @@
 
   input[name="authorities"] {
     display: none;
+  }
+
+  .custom-control-label {
+    height: 100%;
+  }
+
+  @media (min-width: 576px) {
+    .github {
+      text-align: right;
+    }
   }
 </style>
