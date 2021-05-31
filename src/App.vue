@@ -200,6 +200,7 @@
 
   .custom-control-label {
     height: 100%;
+    width: 100%;
   }
 
   @media (min-width: 576px) {
