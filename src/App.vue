@@ -3,6 +3,7 @@
     <Creator/>
     <h1 class="mt-5">Alle Impftermine von ooe-impft.at! 💉</h1>
     <Description />
+    <br>
 
     <div v-if="isLoading">Lade Daten... (dauert a bissl)</div>
     <div v-else>
@@ -34,12 +35,10 @@
   import Result from './components/result'
 
   export default {
-    name: 'App',
     components: {BContainer, FilterCategory, FilterAuthority, ResultHeadline, Creator, Description, Result},
     computed: {
       ...mapState(['isLoading', 'fetchedAt'])
     },
-    methods: {},
   }
 </script>
 
@@ -61,6 +60,4 @@
     height: 100%;
     width: 100%;
   }
-
-
 </style>
