@@ -13,13 +13,16 @@
 
     <p>
       Einen Termin kannst du hier buchen: <br>
-      <a href="https://www.land-oberoesterreich.gv.at/files/covid19impfungopen/#/online-terminvereinbarung" target="_blank" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+      <a href="https://www.land-oberoesterreich.gv.at/files/covid19impfungopen/#/online-terminvereinbarung"
+         target="_blank" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
         https://www.land-oberoesterreich.gv.at/files/covid19impfungopen/#/online-terminvereinbarung
       </a>
     </p>
     <p>
-      <b>Wenn du schon einen Termin hast,</b> registriere dich mit den selben Daten einfach nochmal. Wenn du einen besseren Termin gefunden hast, den alten absagen und danach direkt den neuen Termin buchen.
-      <br>Absagen kannst du den Termin mit dem Link aus der E-Mail deiner alten Buchung. Solange du den alten Termin nicht abgesagt hast, kannst du auch keinen neuen Termin buchen.
+      <b>Wenn du schon einen Termin hast,</b> registriere dich mit den selben Daten einfach nochmal. Wenn du einen
+      besseren Termin gefunden hast, den alten absagen und danach direkt den neuen Termin buchen.
+      <br>Absagen kannst du den Termin mit dem Link aus der E-Mail deiner alten Buchung. Solange du den alten Termin
+      nicht abgesagt hast, kannst du auch keinen neuen Termin buchen.
       <br>Alle Angaben ohne Gewähr.
       <br>
       <br>
@@ -34,6 +37,25 @@
     <div v-if="loading">Lade Daten... (dauert a bissl)</div>
     <div v-else>
       <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt*1000 | toDateString("DD.MM.YYYY HH:mm:ss (dddd)") }}</div>
+
+      <b-form-group label="Impfstoffe:">
+        <b-form-checkbox-group id="categories" v-model="selectedCategories" name="authorities">
+          <b-row align-v="stretch">
+            <b-col md="4" lg="3" class="mb-3" v-for="(name, categoryId) in categoriesWithAppointments"
+                   :key="categoryId">
+              <div :class="`card pointer h-100 ${isCategoryChecked(categoryId) ? ' text-white bg-primary' : ''}`">
+                <b-form-checkbox :value="categoryId" class="h-100">
+                  <div class="card-body h-100">
+                    <h5 class="card-title mb-0">{{ name }}</h5>
+                    Termine: {{ appointments.filter(o => o.categoryId == categoryId).length }}
+                  </div>
+                </b-form-checkbox>
+              </div>
+            </b-col>
+          </b-row>
+        </b-form-checkbox-group>
+      </b-form-group>
+
       <b-form-group label="Standorte:">
         <b-form-checkbox-group id="authorities" v-model="selectedAuthorities" name="authorities">
           <b-row align-v="stretch">
@@ -50,6 +72,7 @@
           </b-row>
         </b-form-checkbox-group>
       </b-form-group>
+
       <b-row>
         <b-col sm="6" class="mb-2">
           <b-button @click="selectAllAuthorities" variant="primary" class="w-100">Alle Standorte auswählen</b-button>
@@ -61,6 +84,7 @@
 
       <h2 class="mt-5">
         <span v-if="!selectedAuthorities.length">Wähle mindestens einen Standort aus!</span>
+        <span v-else-if="!selectedCategories.length">Wähle mindestens einen Impfstoff aus!</span>
         <span v-else-if="!filteredAppointments.length">Leider wurde keine Termine gefunden! 😭</span>
         <span v-else>
           <span v-if="filteredAppointments.length === 1">Ein Termin</span>
@@ -97,16 +121,18 @@
 </template>
 
 <script>
- var dayjs = require('dayjs')
- import { BContainer, BRow, BCol, BFormGroup, BFormCheckboxGroup, BFormCheckbox, BButton } from "bootstrap-vue";
+  var dayjs = require('dayjs')
+  import {BButton, BCol, BContainer, BFormCheckbox, BFormCheckboxGroup, BFormGroup, BRow} from "bootstrap-vue";
 
   import axios from 'axios'
+
   export default {
     name: 'App',
     components: {BContainer, BRow, BCol, BFormGroup, BFormCheckboxGroup, BFormCheckbox, BButton},
-    data () {
+    data() {
       return {
         selectedAuthorities: [],
+        selectedCategories: [],
         loading: false,
         appointments: [],
         authorities: [],
@@ -121,18 +147,32 @@
     },
     filters: {
       toDateString: (date, format) => {
-        if(!date || date === 0) {
+        if (!date || date === 0) {
           return ''
         }
         return dayjs(date).format(format)
       }
     },
     computed: {
+      categoriesWithAppointments() {
+        if (this.loading) return {}
+        const categoryIds = [...new Set(this.appointments.map(o => o.categoryId))]
+        const result = {}
+        Object.keys(this.categories).forEach((categoryId) => {
+          if (categoryIds.indexOf(parseInt(categoryId)) === -1) return
+          result[categoryId] = this.categories[categoryId]
+        })
+        return result
+      },
       filteredAppointments() {
         if (this.loading) return []
         return this.appointments.filter((appointment) => {
           for (let i = 0; i < this.selectedAuthorities.length; i++) {
-            if (appointment.authority.id === this.selectedAuthorities[i]) return true
+            if (appointment.authority.id === this.selectedAuthorities[i]) {
+              for (let i = 0; i < this.selectedCategories.length; i++) {
+                if (appointment.categoryId == this.selectedCategories[i]) return true
+              }
+            }
           }
           return false
         }).sort((appointment1, appointment2) => {
@@ -143,6 +183,10 @@
     watch: {
       selectedAuthorities() {
         window.localStorage.setItem('selectedAuthorities', JSON.stringify(this.selectedAuthorities))
+      },
+      selectedCategories() {
+        const selectedCategories = this.selectedCategories.map(o => parseInt(o))
+        window.localStorage.setItem('selectedCategories', JSON.stringify(selectedCategories))
       }
     },
     methods: {
@@ -152,12 +196,18 @@
         }
         return false
       },
+      isCategoryChecked(categoryId) {
+        for (let i = 0; i < this.selectedCategories.length; i++) {
+          if (categoryId == this.selectedCategories[i]) return true
+        }
+        return false
+      },
       selectAllAuthorities() {
         this.selectedAuthorities = this.authorities.map(o => o.id)
       },
       deselectAllAuthorities() {
         this.selectedAuthorities = []
-      },
+      }
     },
     mounted() {
       this.loading = true;
@@ -178,6 +228,18 @@
           } catch (e) {
             // foobar
           }
+
+          const storedSelectedCategories = window.localStorage.getItem('selectedCategories')
+          try {
+            const value = JSON.parse(storedSelectedCategories)
+            if (value && value.length > 0) {
+              this.selectedCategories = value
+            } else {
+              this.selectedCategories = [...new Set(this.appointments.map(o => o.categoryId))]
+            }
+          } catch (e) {
+            // foobar
+          }
         })
         .catch(error => console.log(error))
         .finally(() => this.loading = false)
@@ -190,6 +252,7 @@
   .pointer {
     cursor: pointer;
   }
+
   .pointer * {
     cursor: pointer;
   }
