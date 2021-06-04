@@ -1,4 +1,4 @@
-# ooe-impft-dates-overview
+# jaukerl-ooe.m8.at
 
 ## API
 [https://github.com/internetztube/ooe-impft-api](https://github.com/internetztube/ooe-impft-api)
