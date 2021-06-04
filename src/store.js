@@ -79,7 +79,7 @@ const store = new Vuex.Store({
     },
     async init(context) {
       context.commit('set', ['isLoading', true])
-      const response = await axios.get(`https://ooe-impft-api.internetztube.net/?birthdate=${context.state.birthdate}`)
+      const response = await axios.get(`https://jaukerl-ooe-api.m8.at/?birthdate=${context.state.birthdate}`)
 
       context.commit('set', ['appointments', response.data.data.appointments])
       context.commit('set', ['authorities', response.data.data.authorities])
