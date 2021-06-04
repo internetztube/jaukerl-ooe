@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="authorities.length">
     <b-form-group label="Standorte:">
       <b-form-checkbox-group id="authorities" v-model="selectedAuthorities" name="authorities">
         <b-row align-v="stretch">
@@ -9,6 +9,9 @@
                 <div class="card-body h-100">
                   <h5 class="card-title">{{ authority.name }}</h5>
                   {{ authority.adresse }}
+                  <div class="mt-1">
+                    Termine: {{ appointments.filter(o => o.authority.id === authority.id).length }}
+                  </div>
                 </div>
               </b-form-checkbox>
             </div>
@@ -31,10 +34,10 @@
 
 
 <script>
-  import { mapFields } from 'vuex-map-fields';
-  import { mapState, mapGetters, mapActions } from 'vuex'
+  import {mapFields} from 'vuex-map-fields';
+  import {mapActions, mapGetters, mapState} from 'vuex'
 
-  import {BCol, BFormCheckbox, BButton, BFormCheckboxGroup, BFormGroup, BRow} from "bootstrap-vue";
+  import {BButton, BCol, BFormCheckbox, BFormCheckboxGroup, BFormGroup, BRow} from "bootstrap-vue";
 
 
   export default {

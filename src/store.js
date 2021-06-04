@@ -1,7 +1,9 @@
 import Vuex from 'vuex'
 import axios from 'axios'
-import { getField, updateField } from 'vuex-map-fields';
+import createPersistedState from "vuex-persistedstate";
+import {getField, updateField} from 'vuex-map-fields';
 import Vue from "vue";
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -10,14 +12,10 @@ const store = new Vuex.Store({
     appointments: [],
     authorities: [],
     fetchedAt: null,
-    categories: {
-      9: 'Biontech / Pfizer',
-      10: 'Moderna',
-      11: 'AstraZeneca',
-      12: 'Johnson & Johnson',
-    },
+    categories: [],
     selectedAuthorities: [],
     selectedCategories: [],
+    birthdate: '1990-01-01',
   },
   getters: {
     filteredAppointments(state) {
@@ -38,15 +36,12 @@ const store = new Vuex.Store({
       })
     },
     availableCategories(state, getters) {
-      const result = {}
-      getters.availableCategoryIds.forEach((categoryId) => {
-        console.log(state.categories, categoryId)
-        result[categoryId] = state.categories[categoryId]
+      return state.categories.filter(o => {
+        return getters.availableCategoryIds.indexOf(o.id) >= 0
       })
-      return result
     },
     availableCategoryIds(state) {
-      return [...new Set(state.appointments.map(o => o.categoryId))]
+      return [...new Set(state.appointments.map(o => o.category.id))]
     },
     allAuthorityIds(state) {
       return state.authorities.map(o => o.id)
@@ -84,10 +79,11 @@ const store = new Vuex.Store({
     },
     async init(context) {
       context.commit('set', ['isLoading', true])
-      const response = await axios.get('https://ooe-impft-api.internetztube.net/')
+      const response = await axios.get(`https://ooe-impft-api.internetztube.net/?birthdate=${context.state.birthdate}`)
 
       context.commit('set', ['appointments', response.data.data.appointments])
       context.commit('set', ['authorities', response.data.data.authorities])
+      context.commit('set', ['categories', response.data.data.categories])
       context.commit('set', ['fetchedAt', response.data.fetchedAt])
 
       if (!context.state.selectedCategories.length) {
@@ -97,9 +93,17 @@ const store = new Vuex.Store({
         context.commit('set', ['selectedAuthorities', context.getters.allAuthorityIds])
       }
       context.commit('set', ['isLoading', false])
-
     }
-  }
+  },
+  plugins: [createPersistedState({
+    reducer(state) {
+      return {
+        selectedAuthorities: state.selectedAuthorities,
+        selectedCategories: state.selectedCategories,
+        birthdate: state.birthdate,
+      }
+    }
+  })],
 })
 
 export default store

@@ -12,6 +12,7 @@ Vue.config.productionTip = false
 
 Vue.filter('toDateString', function(date, format) {
   if (!date || date === 0) return ''
+  format = format || "DD.MM.YYYY HH:mm:ss (dddd)"
   return dayjs(date).format(format)
 })
 

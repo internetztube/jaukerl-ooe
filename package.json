@@ -16,7 +16,8 @@
     "es6-promise": "^4.2.8",
     "vue": "^2.6.12",
     "vuex": "^3.6.2",
-    "vuex-map-fields": "^1.4.1"
+    "vuex-map-fields": "^1.4.1",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
