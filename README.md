@@ -1,27 +1,30 @@
 # jaukerl-ooe.m8.at
 
-## API
-[https://github.com/internetztube/ooe-impft-api](https://github.com/internetztube/ooe-impft-api)
+This is a low-threshold information page that displays all available COVID vaccination appointments in the province of Upper Austria.   
+It is intended for a quick check if an earlier appointment is available.
 
-## Project setup
+## API
+This project is just the front-end. The API can be found in this repository.  
+[internetztube/jaukerl-ooe-api](https://github.com/internetztube/jaukerl-ooe-api)
+
+## Screenshot
+![Screenshot of jaukerl-ooe.m8.at](screenshot.png)
+
+
+## Development
 ```
+# Installation
 npm install
 ```
-
-### Compiles and hot-reloads for development
 ```
+# Development
 npm run serve
 ```
-
-### Compiles and minifies for production
 ```
+# Build
 npm run build
 ```
-
-### Lints and fixes files
 ```
+# Lints and fixes files
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
