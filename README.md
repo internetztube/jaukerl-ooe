@@ -14,7 +14,7 @@ This project is just the front-end. The API can be found in this repository.
 ## Development
 ```
 # Installation
-npm install
+npm i
 ```
 ```
 # Development

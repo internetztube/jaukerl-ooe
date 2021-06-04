@@ -6,14 +6,15 @@ import 'bootstrap-vue/dist/bootstrap-vue.min.css'
 
 import App from './App.vue'
 import store from './store'
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
+import 'dayjs/locale/de'
 
 Vue.config.productionTip = false
 
 Vue.filter('toDateString', function(date, format) {
   if (!date || date === 0) return ''
-  format = format || "DD.MM.YYYY HH:mm:ss (dddd)"
-  return dayjs(date).format(format)
+  format = format || "dd, DD.MM.YYYY HH:mm:ss"
+  return dayjs(date).locale('de').format(format)
 })
 
 
