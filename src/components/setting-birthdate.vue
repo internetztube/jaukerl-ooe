@@ -11,7 +11,7 @@
     </b-col>
     <b-col md="3" sm="12">
       <b-form-group label="Geburtsdatum:">
-        <b-form-datepicker class="mb-2" v-model="birthdate"></b-form-datepicker>
+        <b-form-datepicker class="mb-2" v-model="birthdate" locale="de"></b-form-datepicker>
       </b-form-group>
     </b-col>
   </b-row>
