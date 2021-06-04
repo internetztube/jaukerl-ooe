@@ -4,9 +4,7 @@
     <h1 class="mt-5">Alle Impftermine von ooe-impft.at! 💉</h1>
     <Description/>
     <br>
-    <br>
     <SettingBirthdate/>
-    <br>
     <br>
 
     <div v-if="isLoading">Lade Daten... (dauert a bissl)</div>
