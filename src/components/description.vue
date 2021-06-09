@@ -17,7 +17,7 @@
         <br>
         <b>Zweitimpftermin</b><br>
         Die Termine auf dieser Seite <b><u>beziehen sich ausschließlich auf die Erstimpfung.</u></b>
-        Den Termin zur erforderlichen ZWEITimpfung wird bei der Erstimpfung direkt vor Ort vereinbart.
+        Der Termin zur erforderlichen ZWEITimpfung wird bei der Erstimpfung direkt vor Ort vereinbart.
         Deine ZWEITimpfung kannst du hier verschieben:
         <a href="https://www.land-oberoesterreich.gv.at/corona-impftermin.htm"
            target="_blank" style="display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
