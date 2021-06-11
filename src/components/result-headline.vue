@@ -9,7 +9,7 @@
         <span v-if="freeSlots === 1">mit einem freien Platz</span>
         <span v-else>mit {{ freeSlots}} freien Plätzen</span>
       </span>
-      <span v-else>{{ filteredAppointments.length }} Termine mit {{ freeSlots }} Plätzen</span>
+      <span v-else>{{ filteredAppointments.length }} Termine mit {{ freeSlots }} freien Plätzen</span>
       bei
       <span v-if="selectedAuthorities.length === 1">einem Standort</span>
       <span v-else> {{ selectedAuthorities.length }} Standorten</span>

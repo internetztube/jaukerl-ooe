@@ -6,10 +6,13 @@
           <div :class="`card pointer h-100 ${isCategoryChecked(category.id) ? ' text-white bg-primary' : ''}`">
             <b-form-checkbox :value="category.id" class="h-100">
               <div class="card-body h-100">
-                <h5 class="card-title mb-0">{{ category.description }}</h5>
+                <h5 class="card-title mb-0">
+                  <span class="category-color-dot" :style="`background-color: #${category.colorCode};`"></span>
+                  {{ category.description }}
+                </h5>
                 Termine: {{ appointments.filter(o => o.category.id === parseInt(category.id)).length }}
                 /
-                Plätze: {{ appointments.filter(o => o.category.id === parseInt(category.id)).map(o => o.freeSlots).reduce((a, c) => a + c) }}
+                Freie Plätze: {{ appointments.filter(o => o.category.id === parseInt(category.id)).map(o => o.freeSlots).reduce((a, c) => a + c) }}
               </div>
             </b-form-checkbox>
           </div>
@@ -36,3 +39,16 @@
     }
   }
 </script>
+
+
+<style scoped>
+  .category-color-dot {
+    position: relative;
+    display: inline-block;
+    top: 1px;
+    height: 18px;
+    width: 18px;
+    border-radius: 100px;
+    margin-right: 3px;
+  }
+</style>

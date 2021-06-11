@@ -12,7 +12,7 @@
                   <div class="mt-1">
                     Termine: {{ appointments.filter(o => o.authority.id === authority.id).length }}
                     /
-                    Plätze: {{ appointments.filter(o => o.authority.id === authority.id).map(o => o.freeSlots).reduce((a, c) => a + c) }}
+                    Freie Plätze: {{ appointments.filter(o => o.authority.id === authority.id).map(o => o.freeSlots).reduce((a, c) => a + c) }}
                   </div>
                 </div>
               </b-form-checkbox>
