@@ -8,6 +8,8 @@
               <div class="card-body h-100">
                 <h5 class="card-title mb-0">{{ category.description }}</h5>
                 Termine: {{ appointments.filter(o => o.category.id === parseInt(category.id)).length }}
+                /
+                Plätze: {{ appointments.filter(o => o.category.id === parseInt(category.id)).map(o => o.freeSlots).reduce((a, c) => a + c) }}
               </div>
             </b-form-checkbox>
           </div>
