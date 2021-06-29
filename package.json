@@ -11,10 +11,14 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
     "bootstrap-vue": "^2.21.2",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
     "dayjs": "^1.10.5",
     "es6-promise": "^4.2.8",
     "vue": "^2.6.12",
+    "vue-chart-3": "^0.2.9",
+    "vue-chartjs": "^3.5.1",
+    "vue-router": "^3.2.0",
     "vuex": "^3.6.2",
     "vuex-map-fields": "^1.4.1",
     "vuex-persistedstate": "^4.0.0-beta.3"
@@ -22,6 +26,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "^4.5.13",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",

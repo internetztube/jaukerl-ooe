@@ -8,6 +8,7 @@ import App from './App.vue'
 import store from './store'
 import dayjs from 'dayjs'
 import 'dayjs/locale/de'
+import router from './router'
 
 Vue.config.productionTip = false
 
@@ -21,6 +22,8 @@ Vue.filter('toDateString', function(date, format) {
 new Vue({
   render: h => h(App),
   store,
+  router,
+
   mounted() {
     this.$store.dispatch('init')
   }

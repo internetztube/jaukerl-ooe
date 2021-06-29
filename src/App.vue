@@ -1,75 +1,41 @@
 <template>
   <b-container class="mt-1 mb-5">
-    <Creator/>
-    <h1 class="mt-5">Alle Impftermine von ooe-impft.at! 💉</h1>
-    <Description/>
-    <br>
-    <SettingBirthdate/>
-    <br>
-
-    <div v-if="isLoading">Lade Daten... (dauert a bissl)</div>
-    <div v-else>
-      <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt*1000 | toDateString }}</div>
-
-      <FilterCategory/>
-      <FilterAuthority/>
-
-      <h2 class="mt-5">
-        <ResultHeadline/>
-      </h2>
-
-      <Result/>
-
-      <Creator class="mt-5"/>
-    </div>
+    <Creator class="mb-5"/>
+    <router-view/>
   </b-container>
 </template>
 
 <script>
-  import {BContainer} from "bootstrap-vue";
-  import {mapState} from 'vuex'
+import {BContainer} from "bootstrap-vue";
+import Creator from './views/components/creator'
 
-  import FilterCategory from './components/filter-category'
-  import FilterAuthority from './components/filter-authority'
-  import ResultHeadline from './components/result-headline'
-  import Creator from './components/creator'
-  import Description from './components/description'
-  import Result from './components/result'
-  import SettingBirthdate from './components/setting-birthdate'
-
-  export default {
-    components: {
-      BContainer,
-      FilterCategory,
-      FilterAuthority,
-      ResultHeadline,
-      Creator,
-      Description,
-      Result,
-      SettingBirthdate
-    },
-    computed: {
-      ...mapState(['isLoading', 'fetchedAt'])
-    },
+export default {
+  components: {
+    BContainer,
+    Creator,
   }
+}
 </script>
 
-
 <style>
-  .pointer {
-    cursor: pointer;
-  }
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-  .pointer * {
-    cursor: pointer;
-  }
+#nav {
+  padding: 30px;
+}
 
-  input[name="authorities"] {
-    display: none;
-  }
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
 
-  .custom-control-label {
-    height: 100%;
-    width: 100%;
-  }
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>
