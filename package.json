@@ -18,6 +18,7 @@
     "vue": "^2.6.12",
     "vue-chart-3": "^0.2.9",
     "vue-chartjs": "^3.5.1",
+    "vue-meta": "^2.4.0",
     "vue-router": "^3.2.0",
     "vuex": "^3.6.2",
     "vuex-map-fields": "^1.4.1",

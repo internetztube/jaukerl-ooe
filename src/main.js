@@ -6,9 +6,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.min.css'
 
 import App from './App.vue'
 import store from './store'
+import VueMeta from 'vue-meta'
 import dayjs from 'dayjs'
 import 'dayjs/locale/de'
 import router from './router'
+
+Vue.use(VueMeta)
 
 Vue.config.productionTip = false
 
