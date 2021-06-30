@@ -85,7 +85,7 @@ export default {
   },
   async mounted() {
     this.isLoading = true;
-    this.overview = (await axios.get('https://jaukerl-ooe-api.m8.at/expired-appointments')).data
+    this.overview = (await axios.get('https://jaukerl-ooe-api.m8.at/expired-appointments')).data.data
     this.isLoading = false;
     console.log(this.overview)
   },
