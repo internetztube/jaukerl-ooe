@@ -97,7 +97,7 @@
               </tbody>
             </table>
             <div v-else>
-              An diesem Tag wurden alle Temrine gebucht.
+              An diesem Tag wurden alle Termine gebucht. 🎉
             </div>
           </div>
         </div>
