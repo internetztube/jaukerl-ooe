@@ -42,7 +42,7 @@
           Nicht gebuchte Termine verschwinden zu dem Zeitpunkt, an dem der Impf-Termin stattgefunden hätte. Wenn ein
           Termin mindestens 2 Minuten vor dem eigentlichen Termin nicht gebucht worden ist, wird davon ausgegangen,
           dass niemand diesen Termin gebucht hat. Im Einzelnachweiß sieht man auch den Zeitpunkt an dem der jeweilige
-          Termin als letzten gesehen wurde.
+          Termin das letzten gesehen wurde.
         </p>
 
         <p>
