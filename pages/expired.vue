@@ -58,7 +58,7 @@ export default {
   head() {
     const title = 'Freie Termine, die in OÖ nicht gebucht werden';
     const description = 'Auflistung der nicht gebuchten Impftermine in Oberösterreich';
-    const shareImage = 'https://jaukerl-ooe.m8.at/share-expire.png'
+    const shareImage = 'https://jaukerl-ooe.m8.at/share-expired.png'
     return {
       title,
       meta: [
