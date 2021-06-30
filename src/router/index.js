@@ -11,7 +11,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/expired-appointments',
+    path: '/expired',
     name: 'Expired Appointments',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -21,6 +21,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

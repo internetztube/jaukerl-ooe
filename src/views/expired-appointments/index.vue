@@ -4,7 +4,7 @@
       Loading
     </div>
     <div v-else>
-      <h1>Termine welche ungebucht verfallen sind</h1>
+      <h1>Termine, die in OÖ ungebucht verfallen sind</h1>
       <chart :data="chartData" :options="chartOptions"></chart>
 
       <h2 class="mt-5 mb-3">Einzelnachweis</h2>
@@ -15,7 +15,7 @@
       </select>
 
       <div v-if="details[currentDate]">
-        <table v-if="details[currentDate].data.appointments.length" class="table">
+        <table v-if="details[currentDate].data.appointments.length" class="table mt-4">
           <thead>
           <tr>
             <th>Standort</th>
@@ -38,6 +38,8 @@
         <div v-else class="mt-2">
           An diesem Tag wurden alle Temrine gebucht.
         </div>
+
+        <Creator class="mt-5"/>
       </div>
     </div>
   </div>
@@ -46,9 +48,10 @@
 <script>
 import axios from "axios";
 import chart from './chart'
+import Creator from '../components/creator'
 
 export default {
-  components: {chart},
+  components: {chart, Creator},
   data: function () {
     return {
       currentDate: '',
@@ -69,8 +72,8 @@ export default {
         labels: Object.keys(this.overview),
         datasets: [
           {
-            label: 'Expired Appointments',
-            backgroundColor: '#f87979',
+            label: 'Nicht gebuchte Termine',
+            backgroundColor: '#0d6efd',
             data: Object.values(this.overview).map(o => o.expiredSlots)
           }
         ]
@@ -79,7 +82,10 @@ export default {
     chartOptions() {
       return {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        legend: {
+          onClick: (e) => e.stopPropagation()
+        }
       }
     }
   },
