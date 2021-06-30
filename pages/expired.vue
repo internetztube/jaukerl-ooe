@@ -133,7 +133,6 @@ export default {
 }
 </script>
 
-
 <style>
 .blur-stuff-base * {
   transition: filter .5s;
