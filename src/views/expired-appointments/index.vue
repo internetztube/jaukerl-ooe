@@ -6,9 +6,7 @@
       <router-link to="/">Zurück zu den freien Impfterminen</router-link>
     </div>
 
-    <div v-if="isLoading" class="mt-2">
-      Lade Daten ...
-    </div>
+    <div v-if="isLoading" class="mt-2">Lade Daten... (dauert a bissl)</div>
     <div v-else>
       <chart :data="chartData" :options="chartOptions"></chart>
 
@@ -19,7 +17,7 @@
         <option v-for="(date, index) in Object.keys(overview).reverse()" :key="index" :value="date">{{ date | toDateString('dd, DD.MM.YYYY') }}</option>
       </select>
 
-      <div v-if="isLoadingDay">Lade Daten ...</div>
+      <div v-if="isLoadingDay">Lade Daten... (dauert a bissl)</div>
 
       <div v-if="details[currentDate]" class="table-responsive">
         <table v-if="details[currentDate].data.appointments.length" class="table">
