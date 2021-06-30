@@ -39,10 +39,10 @@
           Seit dem 16.02.2021 werden die Daten, die vom Land über die Schnittstelle zurückkommen minütlich
           archiviert. <br>
 
-          Nicht gebuchte Termine verschwinden zu dem Zeitpunkt, an dem der Impf-Termin stattgefunden hätte. Wenn ein
+          Nicht gebuchte Termine verschwinden zu dem Zeitpunkt, an dem der Impftermin stattgefunden hätte. Wenn ein
           Termin mindestens 2 Minuten vor dem eigentlichen Termin nicht gebucht worden ist, wird davon ausgegangen,
           dass niemand diesen Termin gebucht hat. Im Einzelnachweiß sieht man auch den Zeitpunkt an dem der jeweilige
-          Termin das letzten gesehen wurde.
+          Termin das letzte Mal gesehen wurde.
         </p>
 
         <p>
