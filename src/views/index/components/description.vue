@@ -37,6 +37,6 @@
     <br>
     Weitere Informationen gibt es auf der Website des Landes Oberösterreich:
     <br>
-    <a href="https://www.land-oberoesterreich.gv.at/ooe-impft.htm">http://ooe-impft.at/</a>
+    <a href="https://www.land-oberoesterreich.gv.at/ooe-impft.htm" target="_blank">http://ooe-impft.at/</a>
   </div>
 </template>
