@@ -55,6 +55,17 @@ import descriptionBelow from '../components/expired/description-below'
 import dayDetail from '../components/expired/day-detail'
 
 export default {
+  components: {chart, Creator, descriptionAbove, descriptionBelow, dayDetail},
+  data() {
+    return {
+      currentDate: '',
+      isLoading: true,
+      overview: null,
+      details: [],
+      isLoadingDay: false,
+      accepted: false,
+    }
+  },
   head() {
     const title = 'Freie Termine, die in OÖ nicht gebucht werden';
     const description = 'Auflistung der nicht gebuchten Impftermine in Oberösterreich';
@@ -72,17 +83,6 @@ export default {
         {property: 'twitter:card', content: 'summary_large_image'},
         {property: 'twitter:image', content: shareImage},
       ]
-    }
-  },
-  components: {chart, Creator, descriptionAbove, descriptionBelow, dayDetail},
-  data() {
-    return {
-      currentDate: '',
-      isLoading: true,
-      overview: null,
-      details: [],
-      isLoadingDay: false,
-      accepted: false,
     }
   },
   computed: {

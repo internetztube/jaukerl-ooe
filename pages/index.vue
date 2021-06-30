@@ -44,6 +44,15 @@ import Result from '../components/index/result'
 import SettingBirthdate from '../components/index/setting-birthdate'
 
 export default {
+  components: {
+    FilterCategory,
+    FilterAuthority,
+    ResultHeadline,
+    Creator,
+    Description,
+    Result,
+    SettingBirthdate
+  },
   head() {
     const title = 'Alle Impftermine von ooe-impft.at! 💉';
     const description = 'Alle verfügbaren Impftermine in Oberösterreich!';
@@ -72,15 +81,6 @@ export default {
         googleAnalytics: ['innerHTML'],
       }
     }
-  },
-  components: {
-    FilterCategory,
-    FilterAuthority,
-    ResultHeadline,
-    Creator,
-    Description,
-    Result,
-    SettingBirthdate
   },
   computed: {
     ...mapState(['isLoading', 'fetchedAt'])
