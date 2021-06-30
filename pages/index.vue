@@ -54,7 +54,7 @@ export default {
         {property: 'og:type', content: 'website'},
         {property: 'og:title', content: title},
         {property: 'og:description', content: description},
-        {property: 'og:url', content: 'https://jaukerl-ooe.m8.at/expired/'},// here it is just ngrok for my test
+        {property: 'og:url', content: 'https://jaukerl-ooe.m8.at/'},// here it is just ngrok for my test
         {property: 'og:image', content: shareImage},
         {property: 'twitter:title', content: title},
         {property: 'twitter:description', content: description},
