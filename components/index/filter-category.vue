@@ -1,8 +1,8 @@
 <template>
-  <b-form-group label="Impfstoffe:" v-if="availableCategories.length">
+  <b-form-group v-if="availableCategories.length" label="Impfstoffe:">
     <b-form-checkbox-group id="categories" v-model="selectedCategories" name="authorities">
       <b-row align-v="stretch">
-        <b-col :key="index" class="mb-3" lg="3" md="4" v-for="(category, index) in availableCategories">
+        <b-col v-for="(category, index) in availableCategories" :key="index" class="mb-3" lg="3" md="4">
           <div :class="`card pointer h-100 ${isCategoryChecked(category.id) ? ' text-white bg-primary' : ''}`">
             <b-form-checkbox :value="category.id" class="h-100">
               <div class="card-body h-100">

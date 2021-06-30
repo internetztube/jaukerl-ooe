@@ -7,7 +7,7 @@
 
 <script>
 import {BContainer} from "bootstrap-vue";
-import Creator from './views/components/creator'
+import Creator from '../components/creator'
 
 export default {
   components: {

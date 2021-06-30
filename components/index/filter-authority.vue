@@ -3,7 +3,7 @@
     <b-form-group label="Standorte:">
       <b-form-checkbox-group id="authorities" v-model="selectedAuthorities" name="authorities">
         <b-row align-v="stretch">
-          <b-col md="4" lg="3" class="mb-3" v-for="(authority, index) in authorities" :key="index">
+          <b-col v-for="(authority, index) in authorities" :key="index" md="4" lg="3" class="mb-3">
             <div :class="`card pointer h-100 ${isAuthorityChecked(authority.id) ? ' text-white bg-primary' : ''}`">
               <b-form-checkbox :value="authority.id" class="h-100">
                 <div class="card-body h-100">
@@ -24,10 +24,10 @@
 
     <b-row>
       <b-col sm="6" class="mb-2">
-        <b-button @click="selectAllAuthorities" variant="primary" class="w-100">Alle Standorte auswählen</b-button>
+        <b-button variant="primary" class="w-100" @click="selectAllAuthorities">Alle Standorte auswählen</b-button>
       </b-col>
       <b-col sm="6" class="mb-2">
-        <b-button @click="deselectAllAuthorities" variant="outline-primary" class="w-100">Alle Standorte abwählen</b-button>
+        <b-button variant="outline-primary" class="w-100" @click="deselectAllAuthorities">Alle Standorte abwählen</b-button>
       </b-col>
     </b-row>
 
