@@ -22,7 +22,7 @@
       <p>
         <b>Hinweis</b><br>
         Diese Datenanalyse wurde mit größter Sorgfalt und Genauigkeit durchgeführt. Dennoch kann keine Garantie für
-        die Richtigkeit oder Vollständigkeit der Daten übernommen werden. <br>
+        die Richtigkeit oder Vollständigkeit der Daten übernommen werden.
         Bei Fragen kannst du dich gerne an <a href="mailto:jaukerl-ooe@m8.at">jaukerl-ooe@m8.at</a> wenden.
       </p>
       <div class="form-check">
@@ -140,7 +140,7 @@ export default {
         labels: Object.keys(this.overview).map(o => dayjs(o).locale('de').format('dd, DD.MM.YY')),
         datasets: [
           {
-            label: 'Nicht gebuchte Termine (Plätze/Do',
+            label: 'Nicht gebuchte Termine (Plätze/Dosen)',
             backgroundColor: '#0d6efd',
             data: Object.values(this.overview).map(o => o.expiredSlots)
           }
