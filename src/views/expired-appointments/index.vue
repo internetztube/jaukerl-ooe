@@ -1,28 +1,30 @@
 <template>
   <div class="about">
-    <div v-if="isLoading">
+    <h1>Termine, die in OÖ ungebucht verfallen sind</h1>
+    <div v-if="isLoading" class="mt-2">
       Lade Daten ...
     </div>
     <div v-else>
-      <h1>Termine, die in OÖ ungebucht verfallen sind</h1>
       <chart :data="chartData" :options="chartOptions"></chart>
 
       <h2 class="mt-5 mb-3">Einzelnachweis</h2>
 
-      <select name="" v-model="currentDate" class="form-select d-inline-block">
+      <select v-model="currentDate" class="form-select d-inline-block mb-3">
         <option disabled checked value="">Wähle einen Tag aus</option>
-        <option v-for="(date, index) in Object.keys(overview)" :key="index" :value="date">{{ date }}</option>
+        <option v-for="(date, index) in Object.keys(overview).reverse()" :key="index" :value="date">{{ date | toDateString('dd, DD.MM.YYYY') }}</option>
       </select>
 
-      <div v-if="details[currentDate]">
-        <table v-if="details[currentDate].data.appointments.length" class="table mt-4">
+      <div v-if="isLoadingDay">Lade Daten ...</div>
+
+      <div v-if="details[currentDate]" class="table-responsive">
+        <table v-if="details[currentDate].data.appointments.length" class="table">
           <thead>
           <tr>
             <th>Standort</th>
             <th>Plätze</th>
             <th>Impfstoff</th>
             <th>Zeitpunkt des Termines</th>
-            <th>Zuletzt gesehen am</th>
+            <th>Zuletzt gesehen</th>
           </tr>
           </thead>
           <tbody>
@@ -35,12 +37,12 @@
           </tr>
           </tbody>
         </table>
-        <div v-else class="mt-2">
+        <div v-else>
           An diesem Tag wurden alle Temrine gebucht.
         </div>
 
-        <Creator class="mt-5"/>
       </div>
+      <Creator class="mt-5"/>
     </div>
   </div>
 </template>
@@ -49,6 +51,7 @@
 import axios from "axios";
 import chart from './chart'
 import Creator from '../components/creator'
+import dayjs from 'dayjs'
 
 export default {
   components: {chart, Creator},
@@ -57,7 +60,8 @@ export default {
       currentDate: '',
       isLoading: true,
       overview: null,
-      details: []
+      details: [],
+      isLoadingDay: false,
     }
   },
   watch: {
@@ -69,7 +73,7 @@ export default {
     chartData() {
       if (!this.overview) return null;
       return {
-        labels: Object.keys(this.overview),
+        labels: Object.keys(this.overview).map(o => dayjs(o).locale('de').format('dd, DD.MM.YY')),
         datasets: [
           {
             label: 'Nicht gebuchte Termine',
@@ -98,9 +102,11 @@ export default {
   methods: {
     async getDetail(date) {
       if (this.details[date]) return this.details[date]
+      this.isLoadingDay = true
       const url = `https://jaukerl-ooe-api.m8.at/expired-appointments/detail?date=${date}`
       this.details[date] = (await axios.get(url)).data
       this.$forceUpdate()
+      this.isLoadingDay = false
       return this.details[date]
     }
   }
