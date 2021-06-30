@@ -1,5 +1,6 @@
 import Vue from "vue";
 import dayjs from "dayjs";
+import "dayjs/locale/de"
 
 Vue.filter('toDateString', function(date, format) {
   if (!date || date === 0) return ''
