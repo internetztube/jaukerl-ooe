@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div v-if="isLoading">
-      Loading
+      Lade Daten ...
     </div>
     <div v-else>
       <h1>Termine, die in OÖ ungebucht verfallen sind</h1>
