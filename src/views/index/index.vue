@@ -1,5 +1,11 @@
 <template>
   <div>
+    <b>
+      <div class="mt-3 mb-4">
+        Neu: <router-link to="/expired">Freie Termine, die in OÖ nicht gebucht werden</router-link>
+      </div>
+    </b>
+
     <h1>Alle Impftermine von ooe-impft.at! 💉</h1>
     <Description/>
     <br>

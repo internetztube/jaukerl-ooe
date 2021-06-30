@@ -1,10 +1,11 @@
 <template>
   <div class="about">
-    <h1>Freie Termine, die in OÖ nicht gebucht werden</h1>
 
-    <div class="mb-5 mt-3">
+    <div class="mt-3 mb-4">
       <router-link to="/">Zurück zu den freien Impfterminen</router-link>
     </div>
+
+    <h1>Freie Termine, die in OÖ nicht gebucht werden</h1>
 
     <div v-if="isLoading" class="mt-2">Lade Daten... (dauert a bissl)</div>
     <div v-else>
