@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Termine, die in OÖ nicht gebucht wurden</h1>
+    <h1>Freie Termine, die in OÖ nicht gebucht werden</h1>
 
     <div class="mb-5 mt-3">
       <router-link to="/">Zurück zu den freien Impfterminen</router-link>
@@ -10,24 +10,24 @@
     <div v-else>
       <p>
         <b>Warum?</b><br>
-        Der Bund hat den Ländern die Kompetenz über die COVID Impfungen übertragen. Das heißt, dass jedes Land
+        Der Bund hat den Ländern die Kompetenz für die COVID-Impfungen übertragen. Das heißt, dass jedes Bundesland
         selbst für die Organisation und Abwicklung der Impfungen verantwortlich ist. Also haben die Länder auch die
-        Aufgabe, dass der Impfstoff so schnell wie möglich die die Oberarme der Leute kommt. <br>
-        Diese Seite gibt eine Übersicht wie viele Termine (Plätze/Dosen) jeden Tag in Oberösterreich nicht gebucht
-        werden. Impfstoff wird dabei ziemlich sicher nicht verschwendet, Human Ressourcen der anwesenden Ärzte und
+        Aufgabe, dass der Impfstoff so schnell wie möglich in die Oberarme der Menschen kommt. <br>
+        Diese Seite gibt eine Übersicht darüber wie viele Termine (Plätze/Dosen) jeden Tag in Oberösterreich <b><u>NICHT</u></b> gebucht
+        werden. Impfstoff wird dabei ziemlich sicher nicht verschwendet, Zeit und Ressourcen der anwesenden Ärzte und
         Helfer aber schon.
       </p>
 
       <p>
-        <b>Hinweiß</b><br>
+        <b>Hinweis</b><br>
         Diese Datenanalyse wurde mit größter Sorgfalt und Genauigkeit durchgeführt. Dennoch kann keine Garantie für
-        Richtigkeit oder Vollständigkeit der Daten garantiert werden. <br>
+        die Richtigkeit oder Vollständigkeit der Daten übernommen werden. <br>
         Bei Fragen kannst du dich gerne an <a href="mailto:jaukerl-ooe@m8.at">jaukerl-ooe@m8.at</a> wenden.
       </p>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="accepted">
         <label class="form-check-label" for="flexCheckDefault">
-          Ich habe den Hinweiß gelesen und werde die Daten mit der dementsprechenden Vorsicht genießen.
+          Ich habe den Hinweis gelesen und werde die Daten mit der dementsprechenden Vorsicht handhaben.
         </label>
       </div>
 
@@ -35,8 +35,9 @@
 
         <p>
           <b>Von wo kommen die Daten?</b><br>
-          Seit dem 16.02.2021 werden die Daten, welche vom Land über die Schnittstelle zurück kommen jede Minute
+          Seit dem 16.02.2021 werden die Daten, die vom Land über die Schnittstelle zurückkommen minütlich
           archiviert. <br>
+
           Nicht gebuchte Termine verschwinden zu dem Zeitpunkt, an dem der Impf-Termin stattgefunden hätte. Wenn ein
           Termin mindestens 2 Minuten vor dem eigentlichen Termin nicht gebucht worden ist, wird davon ausgegangen,
           dass niemand diesen Termin gebucht hat. Im Einzelnachweiß sieht man auch den Zeitpunkt an dem der jeweilige
@@ -68,36 +69,36 @@
         </select>
 
         <div v-if="isLoadingDay">Lade Daten... (dauert a bissl)</div>
-
-        <div v-if="details[currentDate]" class="table-responsive">
-          <table v-if="details[currentDate].data.appointments.length" class="table">
-            <thead>
-            <tr>
-              <th>Standort</th>
-              <th class="text-center">Plätze</th>
-              <th>Impfstoff</th>
-              <th>Zeitpunkt des Termines</th>
-              <th>Zuletzt gesehen</th>
-              <th class="text-center">Quelle</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(appointment, key) in details[currentDate].data.appointments" :key="key">
-              <td>{{ appointment.authority.name }}</td>
-              <td class="text-center">{{ appointment.freeSlots }}</td>
-              <td>{{ appointment.category.description }}</td>
-              <td>{{ appointment._startDate | toDateString('dd, DD.MM.YYYY HH:mm:ss') }}</td>
-              <td>{{ appointment._fetchedDate | toDateString('dd, DD.MM.YYYY HH:mm:ss') }}</td>
-              <td class="text-center"><a target="_blank"
-                                         :href="`https://github.com/internetztube/jaukerl-ooe-archive/tree/master/${appointment.filePath}#:~:text=${encodeURIComponent(appointment.uid)}`">🐙</a>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <div v-else>
-            An diesem Tag wurden alle Temrine gebucht.
+        <div style="min-height: 200px">
+          <div v-if="details[currentDate]" class="table-responsive">
+            <table v-if="details[currentDate].data.appointments.length" class="table">
+              <thead>
+              <tr>
+                <th>Standort</th>
+                <th class="text-center">Plätze</th>
+                <th>Impfstoff</th>
+                <th>Zeitpunkt des Termines</th>
+                <th>Zuletzt gesehen</th>
+                <th class="text-center">Quelle</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(appointment, key) in details[currentDate].data.appointments" :key="key">
+                <td>{{ appointment.authority.name }}</td>
+                <td class="text-center">{{ appointment.freeSlots }}</td>
+                <td>{{ appointment.category.description }}</td>
+                <td>{{ appointment._startDate | toDateString('dd, DD.MM.YYYY HH:mm:ss') }}</td>
+                <td>{{ appointment._fetchedDate | toDateString('dd, DD.MM.YYYY HH:mm:ss') }}</td>
+                <td class="text-center"><a target="_blank"
+                                           :href="`https://github.com/internetztube/jaukerl-ooe-archive/tree/master/${appointment.filePath}#:~:text=${encodeURIComponent(appointment.uid)}`">🐙</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div v-else>
+              An diesem Tag wurden alle Temrine gebucht.
+            </div>
           </div>
-
         </div>
       </div>
       <Creator class="mt-5"/>
@@ -113,7 +114,7 @@ import dayjs from 'dayjs'
 
 export default {
   metaInfo: {
-    title: 'Termine, die in OÖ nicht gebucht wurden',
+    title: 'Freie Termine, die in OÖ nicht gebucht werden',
   },
   components: {chart, Creator},
   data: function () {
@@ -138,7 +139,7 @@ export default {
         labels: Object.keys(this.overview).map(o => dayjs(o).locale('de').format('dd, DD.MM.YY')),
         datasets: [
           {
-            label: 'Nicht gebuchte Termine',
+            label: 'Nicht gebuchte Termine (Plätze/Do',
             backgroundColor: '#0d6efd',
             data: Object.values(this.overview).map(o => o.expiredSlots)
           }
