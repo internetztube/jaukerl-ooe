@@ -42,6 +42,9 @@ import Result from './components/result'
 import SettingBirthdate from './components/setting-birthdate'
 
 export default {
+  metaInfo: {
+    title: 'Alle Impftermine von ooe-impft.at! 💉',
+  },
   components: {
     FilterCategory,
     FilterAuthority,
