@@ -1,6 +1,11 @@
 <template>
   <div class="about">
     <h1>Termine, die in OÖ ungebucht verfallen sind</h1>
+
+    <div class="mb-5 mt-3">
+      <router-link to="/">Zurück zu den freien Impfterminen</router-link>
+    </div>
+
     <div v-if="isLoading" class="mt-2">
       Lade Daten ...
     </div>
