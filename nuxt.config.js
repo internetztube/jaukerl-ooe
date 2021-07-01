@@ -27,7 +27,6 @@ export default {
   plugins: [
     '~plugins/filters.js',
     '~/plugins/persistedState.client.js',
-    '~/plugins/bootstrap-vue',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,20 +40,26 @@ export default {
     '@nuxtjs/stylelint-module',
   ],
 
-  gtm: {
-    id: 'G-BPTB659N0H'
-  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/gtm',
+    'bootstrap-vue/nuxt'
   ],
+
+  bootstrapVue: {
+    bootstrapCSS: true,
+    bootstrapVueCSS: true,
+    componentPlugins: [],
+    directivePlugins: [],
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+    extractCSS: true
+  },
 }
