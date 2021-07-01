@@ -2,7 +2,7 @@
   <div>
     <p>
       <b>Von wo kommen die Daten?</b><br>
-      Seit dem 16.02.2021 werden die Daten, die vom Land über die Schnittstelle zurückkommen minütlich
+      Seit dem 16.06.2021 werden die Daten, die vom Land über die Schnittstelle zurückkommen minütlich
       archiviert. <br>
 
       Nicht gebuchte Termine verschwinden zu dem Zeitpunkt, an dem der Impftermin stattgefunden hätte. Wenn ein
