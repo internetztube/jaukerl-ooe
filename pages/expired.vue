@@ -134,12 +134,12 @@ export default {
 </script>
 
 <style>
-.blur-stuff-base * {
+.blur-stuff-base {
   transition: filter .5s;
   filter: blur(0);
 }
 
-.blur-stuff * {
+.blur-stuff {
   filter: blur(10px);
   pointer-events: none;
   user-select: none;
