@@ -150,7 +150,7 @@ export default {
   },
   async mounted() {
     this.isLoading = true;
-    this.overview = (await axios.get('http://localhost:3000/expired-appointments')).data.data
+    this.overview = (await axios.get('https://jaukerl-ooe-api.m8.at/expired-appointments')).data.data
     this.isLoading = false;
   },
   methods: {
