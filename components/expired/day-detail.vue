@@ -14,7 +14,10 @@
         </thead>
         <tbody>
         <tr v-for="(appointment, key) in day.data.appointments" :key="key">
-          <td>{{ appointment.authority.name }}</td>
+          <td>
+            <span class="color-dot-authority" :style="`background-color: ${stringToColor(appointment.authority.name)}`"></span>
+            {{ appointment.authority.name }}
+          </td>
           <td class="text-center">{{ appointment.freeSlots }}</td>
           <td>{{ appointment.category.description }}</td>
           <td>{{ appointment._startDate | toDateString('dd, DD.MM.YYYY HH:mm:ss') }}</td>
@@ -35,12 +38,26 @@
 </template>
 
 <script>
+import stringToColor from "@/helpers/string-to-color";
 export default {
   props: {
     day: {
       type: Object,
       default: null,
     }
+  },
+  methods: {
+    stringToColor,
   }
 }
 </script>
+
+<style>
+.color-dot-authority {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  margin-right: 7px;
+}
+</style>

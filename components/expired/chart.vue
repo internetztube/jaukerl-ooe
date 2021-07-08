@@ -14,7 +14,17 @@ export default {
     }
   },
   mounted () {
-    this.renderChart(this.data, this.options)
+    this.render()
+  },
+  methods: {
+    render() {
+      this.renderChart(this.data, this.options)
+    }
+  },
+  watch: {
+    options() {
+      this.render()
+    }
   }
 }
 </script>

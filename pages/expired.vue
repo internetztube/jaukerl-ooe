@@ -15,8 +15,8 @@
       Bei Fragen kannst du dich gerne an <a href="mailto:jaukerl-ooe@m8.at">jaukerl-ooe@m8.at</a> wenden.
     </p>
     <div class="form-check">
-      <input id="flexCheckDefault" v-model="accepted" class="form-check-input" type="checkbox" value="">
-      <label class="form-check-label" for="flexCheckDefault">
+      <input id="toc" v-model="accepted" class="form-check-input" type="checkbox" value="">
+      <label class="form-check-label" for="toc">
         Ich habe den Hinweis gelesen und werde die Daten mit der dementsprechenden Vorsicht handhaben.
       </label>
     </div>
@@ -26,7 +26,14 @@
       <div v-else>
         <description-below/>
 
-        <chart :data="chartData" :options="chartOptions" class="mt-5"></chart>
+        <h4 class="mt-5">Nicht gebuchte Termine (Plätze/Dosen)</h4>
+        <chart :data="chartData" :options="chartOptions" class="mt-5 chart"></chart>
+        <div class="form-check mt-3">
+          <input id="legend" v-model="showLegend" class="form-check-input" type="checkbox" value="">
+          <label class="form-check-label" for="legend">
+            Legende anzeigen
+          </label>
+        </div>
 
         <h2 class="mt-5 mb-3">Einzelnachweis</h2>
         <select v-model="currentDate" class="form-select d-inline-block mb-3">
@@ -48,6 +55,7 @@
 <script>
 import axios from "axios";
 import dayjs from 'dayjs'
+import stringToColor from "@/helpers/string-to-color";
 import chart from '../components/expired/chart'
 import Creator from '../components/creator'
 import descriptionAbove from '../components/expired/description-above'
@@ -64,6 +72,7 @@ export default {
       details: [],
       isLoadingDay: false,
       accepted: false,
+      showLegend: false,
     }
   },
   head() {
@@ -88,23 +97,48 @@ export default {
   computed: {
     chartData() {
       if (!this.overview) return null;
+      const allDays = {}
+      Object.keys(this.overview).forEach(o => { allDays[o] = 0 })
+
+      const allAuthorities = {}
+      Object.values(this.overview).forEach((day) => {
+        Object.values(day.byAuthority).forEach(({ authority }) => {
+          allAuthorities[authority.id] = authority
+        })
+      })
+
+      const datasets = Object.values(allAuthorities).map((authority) => {
+        const data = Object.keys(this.overview).map((date) => {
+          if (this.overview[date].byAuthority[authority.id]) {
+            return this.overview[date].byAuthority[authority.id].expiredSlots
+          } else {
+            return 0
+          }
+        })
+        return {
+          label: authority.name,
+          backgroundColor: stringToColor(authority.name),
+          data
+        }
+      })
+
       return {
         labels: Object.keys(this.overview).map(o => dayjs(o).locale('de').format('dd, DD.MM.YY')),
-        datasets: [
-          {
-            label: 'Nicht gebuchte Termine (Plätze/Dosen)',
-            backgroundColor: '#0d6efd',
-            data: Object.values(this.overview).map(o => o.expiredSlots)
-          }
-        ]
+        datasets
       }
     },
     chartOptions() {
       return {
+
         responsive: true,
         maintainAspectRatio: false,
+        // hide legend for now
         legend: {
-          onClick: (e) => e.stopPropagation()
+          display: this.showLegend,
+        },
+        scales: {
+          xAxes: [{ stacked: true }],
+          yAxes: [{ stacked: true }]
         }
       }
     }
@@ -116,7 +150,7 @@ export default {
   },
   async mounted() {
     this.isLoading = true;
-    this.overview = (await axios.get('https://jaukerl-ooe-api.m8.at/expired-appointments')).data.data
+    this.overview = (await axios.get('http://localhost:3000/expired-appointments')).data.data
     this.isLoading = false;
   },
   methods: {
@@ -143,6 +177,11 @@ export default {
   filter: blur(10px);
   pointer-events: none;
   user-select: none;
+}
+
+.chart {
+  height: 40vh;
+  min-height: 600px;
 }
 
 </style>
