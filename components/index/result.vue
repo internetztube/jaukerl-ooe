@@ -1,35 +1,33 @@
 <template>
-  <b-row>
-    <b-col v-for="(appointment, index) in filteredAppointments" :key="index" class="mb-4" lg="3" md="4" sm="6">
+  <div class="row">
+    <div class="mb-4 col-sm-6 col-md-4 col-lg-3" v-for="(appointment, index) in filteredAppointments" :key="index">
       <div class="card h-100">
         <div class="card-body h-100 result-card">
           <span class="category-color-bar" :style="`background-color: #${appointment.category.colorCode};`"></span>
           <h5>{{ appointment.startDate | toDateString('dd, DD.MM.YYYY HH:mm') }}</h5>
           <span class="position-relative">
-            <span class="category-color-dot" :style="`background-color: #${appointment.category.colorCode};`"></span>
-            <span class="category-name">{{ appointment.category.description }}</span>
-          </span>
+          <span class="category-color-dot" :style="`background-color: #${appointment.category.colorCode};`"></span>
+          <span class="category-name">{{ appointment.category.description }}</span>
+        </span>
           <div>{{ appointment.authority.name }}</div>
           <div><b>Freie Plätze:</b> {{ appointment.freeSlots }}</div>
         </div>
       </div>
-    </b-col>
-  </b-row>
+    </div>
+  </div>
 </template>
 
 <script>
-  import {BCol, BRow} from "bootstrap-vue";
   import {mapGetters} from 'vuex'
 
   export default {
-    components: {BRow, BCol},
     computed: {
       ...mapGetters(['filteredAppointments'])
     }
   }
 </script>
 
-<style scoped>
+<style>
   .category-color-bar {
     display: inline-block;
     height: 100%;

@@ -17,18 +17,8 @@ export const getters = {
   filteredAppointments(state) {
     if (state.isLoading) return []
     return state.appointments.filter((appointment) => {
-      for (let i = 0; i < state.selectedAuthorities.length; i++) {
-        // Check if is in selected authorities array
-        if (appointment.authority.id === state.selectedAuthorities[i]) {
-          for (let i = 0; i < state.selectedCategories.length; i++) {
-            // Check if is in selected categories array
-            if (parseInt(appointment.categoryId) === parseInt(state.selectedCategories[i])) return true
-          }
-        }
-      }
-      return false
-    }).sort((appointment1, appointment2) => {
-      return appointment1.startDateTimestamp - appointment2.startDateTimestamp
+      return state.selectedAuthorities.includes(appointment.authority.id)
+        && state.selectedCategories.includes(appointment.categoryId)
     })
   },
   availableCategories(state, getters) {
@@ -77,7 +67,11 @@ export const actions = {
     context.commit('set', ['isLoading', true])
     const response = await axios.get(`https://jaukerl-ooe-api.m8.at/?birthdate=${context.state.birthdate}`)
 
-    context.commit('set', ['appointments', response.data.data.appointments])
+    const appointments = response.data.data.appointments.sort((appointment1, appointment2) => {
+      return appointment1.startDateTimestamp - appointment2.startDateTimestamp
+    })
+
+    context.commit('set', ['appointments', appointments])
     context.commit('set', ['authorities', response.data.data.authorities])
     context.commit('set', ['categories', response.data.data.categories])
     context.commit('set', ['fetchedAt', response.data.fetchedAt])
