@@ -8,7 +8,7 @@
 
 
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-6">
         <br>
         <b>Wenn du schon einen Termin hast,</b><br> registriere dich mit den selben Daten einfach nochmal. Wenn du einen
         besseren Termin gefunden hast, den alten absagen und danach direkt den neuen Termin buchen. Absagen kannst du
@@ -25,7 +25,7 @@
 
 
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5 offset-md-1">
         <br>
         <setting-birthdate/>
         <br>
@@ -35,9 +35,11 @@
       </div>
     </div>
 
-    <br>Alle Angaben ohne Gewähr.
+    <br>
+    Alle Angaben ohne Gewähr.
 
-
+    <br>
+    <br>
   </div>
 </template>
 
