@@ -1,20 +1,18 @@
 <template>
-  <b-row>
-    <b-col md="9" sm="12">
-      <p>
-        Das Land Oberösterreich hat am 27.05.2021 die Impftermine für alle ab 12 Jahren freigegeben. Nicht alle
-        Impfstoffe sind für alle Altersgruppen freigegeben.
-        <br>
-        Deswegen kannst du hier ein Geburtsdatum angeben, für das
-        die jeweiligen Termine angezeigt werden sollen.
-      </p>
-    </b-col>
-    <b-col md="3" sm="12">
-      <b-form-group label="Geburtsdatum:">
-        <b-form-datepicker v-model="birthdate" class="mb-2" locale="de"></b-form-datepicker>
-      </b-form-group>
-    </b-col>
-  </b-row>
+  <div>
+    <p>
+      <b>
+        Nicht alle Impfstoffe sind für alle Altersgruppen freigegeben.
+      </b>
+      <br>
+      Deswegen kannst du hier ein Geburtsdatum angeben, für das
+      die jeweiligen Termine angezeigt werden sollen.
+    </p>
+
+    <b-form-group label="Geburtsdatum:">
+      <b-form-datepicker v-model="birthdate" class="mb-2" locale="de"></b-form-datepicker>
+    </b-form-group>
+  </div>
 </template>
 
 

@@ -50,7 +50,6 @@ export default {
     Creator,
     Description,
     Result,
-    SettingBirthdate
   },
   head() {
     const title = 'Alle Impftermine von ooe-impft.at! 💉';

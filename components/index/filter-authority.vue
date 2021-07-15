@@ -1,7 +1,7 @@
 <template>
   <div v-if="authorities.length">
     <b-form-group label="Standorte:">
-      <b-form-checkbox-group id="authorities" v-model="selectedAuthorities" name="authorities">
+      <b-form-checkbox-group id="authorities" v-model.lazy="selectedAuthorities" name="authorities">
         <b-row align-v="stretch">
           <b-col v-for="(authority, index) in authorities" :key="index" md="4" lg="3" class="mb-3">
             <div :class="`card pointer h-100 ${isAuthorityChecked(authority.id) ? ' text-white bg-primary' : ''}`">

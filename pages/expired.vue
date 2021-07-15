@@ -95,19 +95,51 @@ export default {
     }
   },
   computed: {
-    chartData() {
-      if (!this.overview) return null;
-      const allDays = {}
-      Object.keys(this.overview).forEach(o => { allDays[o] = 0 })
-
+    allAuthorities() {
       const allAuthorities = {}
       Object.values(this.overview).forEach((day) => {
-        Object.values(day.byAuthority).forEach(({ authority }) => {
+        Object.values(day.byAuthority).forEach(({ authority, expiredSlots }) => {
           allAuthorities[authority.id] = authority
+          if (!allAuthorities[authority.id].expiredSlots) {
+            allAuthorities[authority.id].expiredSlots = 0
+          }
+          allAuthorities[authority.id].expiredSlots += expiredSlots
         })
       })
+      return Object.fromEntries(
+        Object.entries(allAuthorities)
+          .sort(([,{expiredSlots: a1}], [,{expiredSlots: a2}]) => a1 - a2)
+      )
+    },
+    authoritiesColorMapping () {
+      const colors = [
+        '#6ea8fe',
+        '#a370f7',
+        '#a98eda',
+        '#e685b5',
+        '#ea868f',
+        '#feb272',
+        '#ffda6a',
+        '#75b798',
+        '#79dfc1',
+        '#6edff6',
+        '#dee2e6',
+      ];
 
-      const datasets = Object.values(allAuthorities).map((authority) => {
+      const result = {}
+      Object.values(this.allAuthorities).forEach((authority, index) => {
+        if (index > colors.length) {
+          result[authority.id] = stringToColor(authority.name)
+        } else {
+          result[authority.id] = colors[index % colors.length];
+        }
+      })
+      return result
+    },
+    chartData() {
+      if (!this.overview) return null;
+
+      const datasets = Object.values(this.allAuthorities).map((authority) => {
         const data = Object.keys(this.overview).map((date) => {
           if (this.overview[date].byAuthority[authority.id]) {
             return this.overview[date].byAuthority[authority.id].expiredSlots
@@ -117,8 +149,9 @@ export default {
         })
         return {
           label: authority.name,
-          backgroundColor: stringToColor(authority.name),
-          data
+          backgroundColor: this.authoritiesColorMapping[authority.id],
+          data,
+          steppedLine: true,
         }
       })
 
