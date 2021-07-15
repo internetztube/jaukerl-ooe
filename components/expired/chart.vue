@@ -13,17 +13,17 @@ export default {
       required: true,
     }
   },
+  watch: {
+    options() {
+      this.render()
+    }
+  },
   mounted () {
     this.render()
   },
   methods: {
     render() {
       this.renderChart(this.data, this.options)
-    }
-  },
-  watch: {
-    options() {
-      this.render()
     }
   }
 }

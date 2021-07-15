@@ -19,11 +19,11 @@
 <script>
   import {mapFields} from 'vuex-map-fields';
 
-  import {BCol, BFormDatepicker, BFormGroup, BRow} from "bootstrap-vue";
+  import {BFormDatepicker, BFormGroup} from "bootstrap-vue";
 
 
   export default {
-    components: {BFormGroup, BFormDatepicker, BCol, BRow},
+    components: {BFormGroup, BFormDatepicker},
     computed: {
       ...mapFields(['birthdate']),
     },

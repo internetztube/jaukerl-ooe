@@ -9,8 +9,6 @@
     <h1>Alle Impftermine von ooe-impft.at! 💉</h1>
     <Description/>
     <br>
-    <SettingBirthdate/>
-    <br>
     <div v-if="isLoading || !fetchedAt">Lade Daten... (dauert a bissl)</div>
     <div v-else>
       <no-ssr>
@@ -40,7 +38,6 @@ import ResultHeadline from '../components/index/result-headline'
 import Creator from '../components/creator'
 import Description from '../components/index/description'
 import Result from '../components/index/result'
-import SettingBirthdate from '../components/index/setting-birthdate'
 
 export default {
   components: {
