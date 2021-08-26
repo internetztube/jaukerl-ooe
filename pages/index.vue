@@ -1,12 +1,12 @@
 <template>
   <div>
-<!--    <h5>-->
-<!--      <div class="mt-3 mb-5">-->
-<!--        <router-link to="/expired">Freie Termine, die in OÖ nicht gebucht werden</router-link>-->
-<!--      </div>-->
-<!--    </h5>-->
+    <h5>
+      <div class="mt-3 mb-5">
+        <router-link to="/expired">Freie Termine, die in OÖ nicht gebucht werden</router-link>
+      </div>
+    </h5>
 
-    <h1>Alle Impftermine von ooe-impft.at! 💉</h1>
+    <h1>Die Nächsten Impftermine von ooe-impft.at! 💉</h1>
     <Description/>
     <br>
     <div v-if="isLoading || !fetchedAt">Lade Daten... (dauert a bissl)</div>
