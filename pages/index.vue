@@ -52,8 +52,8 @@ export default {
     Result,
   },
   head() {
-    const title = 'Alle Impftermine von ooe-impft.at! 💉';
-    const description = 'Alle verfügbaren Impftermine in Oberösterreich!';
+    const title = 'Die Nächsten Impftermine von ooe-impft.at! 💉';
+    const description = 'Die Nächsten Impftermine in Oberösterreich!';
     const shareImage = 'https://jaukerl-ooe.m8.at/share.png'
     return {
       title,
