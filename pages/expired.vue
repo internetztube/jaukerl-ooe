@@ -27,8 +27,18 @@
         <description-below/>
 
         <h4 class="mt-5">Nicht gebuchte Termine (Plätze/Dosen)</h4>
-        <chart :data="chartData" :options="chartOptions" class="mt-5 chart"></chart>
-        <div class="form-check mt-3">
+        <p>Bisher sind {{ count }} Plätze/Dosen ungenutzt ausgelaufen.</p>
+        <chart v-show="!chartDetailed" :data="overviewChartData" :options="chartOptions" class="mt-5 chart"></chart>
+        <chart v-show="chartDetailed" :data="detailedChartData" :options="chartOptions" class="mt-5 chart"></chart>
+
+        <div class="form-check-inline mt-3">
+          <input id="detailedLLegend" v-model="chartDetailed" class="form-check-input" type="checkbox" value="">
+          <label class="form-check-label" for="detailedLLegend">
+            Detaillierten Chart anzeigen
+          </label>
+        </div>
+
+        <div class="form-check-inline mt-3" v-show="chartDetailed">
           <input id="legend" v-model="showLegend" class="form-check-input" type="checkbox" value="">
           <label class="form-check-label" for="legend">
             Legende anzeigen
@@ -136,7 +146,25 @@ export default {
       })
       return result
     },
-    chartData() {
+    overviewChartData() {
+      if (!this.overview) return null;
+
+      const data = Object.keys(this.overview).map((date) => {
+        return this.overview[date].expiredSlots;
+      })
+      const dataset = {
+        label: 'Plätze/Dosen',
+        backgroundColor: '#0d6efd',
+        data,
+        steppedLine: true,
+      }
+
+      return {
+        labels: Object.keys(this.overview).map(o => dayjs(o).locale('de').format('dd, DD.MM.YY')),
+        datasets: [dataset]
+      }
+    },
+    detailedChartData() {
       if (!this.overview) return null;
 
       const datasets = Object.values(this.allAuthorities).map((authority) => {
@@ -162,7 +190,6 @@ export default {
     },
     chartOptions() {
       return {
-
         responsive: true,
         maintainAspectRatio: false,
         // hide legend for now
@@ -174,6 +201,12 @@ export default {
           yAxes: [{ stacked: true }]
         }
       }
+    },
+    count () {
+      return Object.values(this.overview)
+        .map(o => o.expiredSlots)
+        .reduce((a, b) => a + b, 0)
+        .toLocaleString('de')
     }
   },
   watch: {
