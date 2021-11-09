@@ -44,6 +44,10 @@ export default {
     day: {
       type: Object,
       default: null,
+    },
+    colorMapping: {
+      type: Object,
+      default: null
     }
   },
   methods: {

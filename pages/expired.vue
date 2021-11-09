@@ -54,7 +54,7 @@
         </select>
 
         <div v-if="isLoadingDay">Lade Daten... (dauert a bissl)</div>
-        <day-detail :day="details[currentDate]"></day-detail>
+        <day-detail :day="details[currentDate]" :color-mapping="authoritiesColorMapping"></day-detail>
 
       </div>
     </div>
@@ -83,6 +83,7 @@ export default {
       isLoadingDay: false,
       accepted: false,
       showLegend: false,
+      chartDetailed: false,
     }
   },
   head() {
