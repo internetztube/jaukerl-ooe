@@ -20,6 +20,7 @@
         <h2 class="mt-5">
           <ResultHeadline/>
         </h2>
+        <ResultHint v-if="filteredAppointments.length > 5" />
 
         <Result/>
         <Creator class="mt-5"/>
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 
 import FilterCategory from '../components/index/filter-category'
 import FilterAuthority from '../components/index/filter-authority'
@@ -38,9 +39,11 @@ import ResultHeadline from '../components/index/result-headline'
 import Creator from '../components/creator'
 import Description from '../components/index/description'
 import Result from '../components/index/result'
+import ResultHint from "../components/index/result-hint";
 
 export default {
   components: {
+    ResultHint,
     FilterCategory,
     FilterAuthority,
     ResultHeadline,
@@ -78,7 +81,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isLoading', 'fetchedAt'])
+    ...mapState(['isLoading', 'fetchedAt']),
+    ...mapGetters(['filteredAppointments'])
   },
   mounted() {
     this.$store.dispatch('init')
