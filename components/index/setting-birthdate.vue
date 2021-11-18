@@ -10,7 +10,7 @@
     </p>
 
     <b-form-group label="Geburtsdatum:">
-      <b-form-datepicker v-model="birthdate" class="mb-2" locale="de"></b-form-datepicker>
+      <input type="date" v-model="birthdate" class="mb-2 form-control">
     </b-form-group>
   </div>
 </template>
@@ -19,11 +19,11 @@
 <script>
   import {mapFields} from 'vuex-map-fields';
 
-  import {BFormDatepicker, BFormGroup} from "bootstrap-vue";
+  import {BFormGroup} from "bootstrap-vue";
 
 
   export default {
-    components: {BFormGroup, BFormDatepicker},
+    components: {BFormGroup},
     computed: {
       ...mapFields(['birthdate']),
     },
