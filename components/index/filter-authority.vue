@@ -1,6 +1,15 @@
 <template>
   <div v-if="authorities.length">
     <b-form-group label="Standorte:">
+      <b-row class="d-lg-none">
+        <b-col sm="6" class="mb-2">
+          <b-button variant="primary" class="w-100" @click="selectAllAuthorities">Alle Standorte auswählen</b-button>
+        </b-col>
+        <b-col sm="6" class="mb-2">
+          <b-button variant="outline-primary" class="w-100" @click="deselectAllAuthorities">Alle Standorte abwählen</b-button>
+        </b-col>
+      </b-row>
+
       <b-form-checkbox-group id="authorities" v-model.lazy="selectedAuthorities" name="authorities">
         <b-row align-v="stretch">
           <b-col v-for="(authority, index) in authorities" :key="index" md="4" lg="3" class="mb-3">

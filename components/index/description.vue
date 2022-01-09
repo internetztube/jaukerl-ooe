@@ -15,7 +15,7 @@
         den Termin mit dem Link aus der E-Mail deiner alten Buchung. Solange du den alten Termin
         nicht abgesagt hast, kannst du auch keinen neuen Termin buchen. <br /><br />
         <b>
-          Seit dem 12. Juli kannst du nach dem gleichen Schema auch den Termin für deine <u>ZWEITimpfung</u> verschieben.
+          Seit dem 12. Juli 2021 kannst du nach dem gleichen Schema auch den Termin für deine <u>ZWEITimpfung</u> verschieben.
         </b>
 
         <br />
