@@ -10,7 +10,6 @@ export const state = () => ({
   categories: [],
   selectedAuthorities: [],
   selectedCategories: [],
-  birthdate: '1990-01-01',
 });
 
 export const getters = {
@@ -95,7 +94,6 @@ const getPlugins = () => {
         return {
           selectedAuthorities: state.selectedAuthorities,
           selectedCategories: state.selectedCategories,
-          birthdate: state.birthdate,
         }
       }
     })

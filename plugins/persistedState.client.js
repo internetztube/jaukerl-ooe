@@ -8,7 +8,6 @@ export default ({store}) => {
       return {
         selectedAuthorities: state.selectedAuthorities,
         selectedCategories: state.selectedCategories,
-        birthdate: state.birthdate,
       }
     }
   })(store)
