@@ -65,7 +65,7 @@ export const actions = {
   },
   async init(context) {
     context.commit('set', ['isLoading', true])
-    const response = await axios.get(`https://jaukerl-ooe-api.m8.at/?birthdate=${context.state.birthdate}`)
+    const response = await axios.get(`https://storage.googleapis.com/jaukerl-ooe/data.json?_=${+new Date()}`)
 
     const appointments = response.data.data.appointments.sort((appointment1, appointment2) => {
       return appointment1.startDateTimestamp - appointment2.startDateTimestamp
