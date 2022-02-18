@@ -1,5 +1,5 @@
 <template>
-  <b-form-group v-if="availableCategories.length" label="Impfstoffe:">
+  <b-form-group v-if="availableCategories.length" label="Impfstoffe / Beratungsgespräche:">
     <b-form-checkbox-group id="categories" v-model="selectedCategories" name="authorities">
       <b-row align-v="stretch">
         <b-col v-for="(category, index) in availableCategories" :key="index" class="mb-3" lg="3" md="4">
