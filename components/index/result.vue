@@ -6,7 +6,7 @@
           <span class="category-color-bar" :style="`background-color: #${appointment.category.colorCode};`"></span>
           <h5>{{ appointment.startDate | toDateString('dd, DD.MM.YYYY HH:mm') }}</h5>
           <span class="position-relative">
-          <span class="category-color-dot" :style="`background-color: #${appointment.category.colorCode};`"></span>
+          <span v-if="appointment.category.colorCode" class="category-color-dot" :style="`background-color: #${appointment.category.colorCode};`"></span>
           <span class="category-name">{{ appointment.category.description }}</span>
         </span>
           <div>{{ appointment.authority.name }}</div>

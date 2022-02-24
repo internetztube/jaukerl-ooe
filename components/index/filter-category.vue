@@ -7,7 +7,7 @@
             <b-form-checkbox :value="category.id" class="h-100">
               <div class="card-body h-100">
                 <h5 class="card-title mb-0">
-                  <span class="category-color-dot" :style="`background-color: #${category.colorCode};`"></span>
+                  <span class="category-color-dot" v-if="category.colorCode" :style="`background-color: #${category.colorCode};`"></span>
                   {{ category.description }}
                 </h5>
                 Termine: {{ appointments.filter(o => o.category.id === parseInt(category.id)).length }}
