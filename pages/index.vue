@@ -3,7 +3,7 @@
     <h1>jaukerl-ooe.m8.at</h1>
     <br>
     <p>
-      Seit dem 30. Juni 2023 sind alle oberösterreichisch Landesimpfzentren geschlossen.
+      Seit dem 30. Juni 2023 sind alle oberösterreichischen Landesimpfzentren geschlossen.
       COVID 19-Impfungen werden, im niedergelassenen Bereich (Hausarzt, ...) und an Bezirksverwaltungsbehörden
       (Bezirkshauptmannschaften, Gemeinden, Magistraten, ...) angeboten.
     </p>
