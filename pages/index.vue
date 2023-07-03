@@ -1,56 +1,47 @@
 <template>
   <div>
-    <!--<h5>-->
-      <!--<div class="mt-3 mb-5">-->
-        <!--<router-link to="/expired">Freie Termine, die in OÖ nicht gebucht werden</router-link>-->
-      <!--</div>-->
-    <!--</h5>-->
-
-    <h1>Die Nächsten Impftermine von ooe-impft.at! 💉</h1>
-    <Description/>
+    <h1>jaukerl-ooe.m8.at</h1>
     <br>
-    <div v-if="isLoading || !fetchedAt">Lade Daten... (dauert a bissl)</div>
-    <div v-else>
-      <no-ssr>
-        <div class="mb-4">Letzte Aktualisierung: {{ fetchedAt * 1000 | toDateString }}</div>
+    <p>
+      Seit dem 30. Juni 2023 sind alle oberösterreichisch Landesimpfzentren geschlossen.
+      COVID 19-Impfungen werden, im niedergelassenen Bereich (Hausarzt, ...) und an Bezirksverwaltungsbehörden
+      (Bezirkshauptmannschaften, Gemeinden, Magistraten, ...) angeboten.
+    </p>
+    <p>
+      Weitere Informationen findest du hier: <a href="https://corona.ooe.gv.at/ooe-impft.htm">corona.ooe.gv.at</a>
+    </p>
+    <br>
+    <hr>
+    <br>
+    <p>
+      Somit ist das Projekt auch für mich abgeschlossen.
+    </p>
+    <p>
+      Danke an alle, die mir bei dem Projekt zur Seite gestanden haben.
+      Danke an alle, die diese Website in ihrem Freundes-/Bekanntenkreis beworben haben, damit Leute schneller einen Impftermin finden konnten.
+      Danke an alle persönlichen Nachrichten, die mich erreicht haben.
+      Danke an alle, die mich finanziell mit einer Spende bei dem Projekt unterstützt haben.
+    </p>
+    <p>
+      Bis zum nächsten Projekt!<br>
+      Frederic Köberl
+    </p>
 
-        <FilterCategory/>
-        <FilterAuthority/>
-
-        <h2 class="mt-5">
-          <ResultHeadline/>
-        </h2>
-        <ResultHint v-if="filteredAppointments.length > 5" />
-
-        <Result/>
-        <Creator class="mt-5"/>
-
-      </no-ssr>
-    </div>
+    <br>
+    <p>
+      <a href="https://frederickoeberl.com">frederickoeberl.com</a><br>
+      <a href="https://github.com/internetztube/jaukerl-ooe">github.com/internetztube/jaukerl-ooe</a><br>
+    </p>
+    <p>
+      <a href="https://raw.githubusercontent.com/internetztube/jaukerl-ooe/master/screenshot.png" target="_blank">Screenshot von jaukerl-ooe.m8.at (11.02.2022)</a>
+    </p>
   </div>
 </template>
 
 <script>
 import {mapGetters, mapState} from 'vuex'
 
-import FilterCategory from '../components/index/filter-category'
-import FilterAuthority from '../components/index/filter-authority'
-import ResultHeadline from '../components/index/result-headline'
-import Creator from '../components/creator'
-import Description from '../components/index/description'
-import Result from '../components/index/result'
-import ResultHint from "../components/index/result-hint";
-
 export default {
-  components: {
-    ResultHint,
-    FilterCategory,
-    FilterAuthority,
-    ResultHeadline,
-    Creator,
-    Description,
-    Result,
-  },
   head() {
     const title = 'Die Nächsten Impftermine von ooe-impft.at! 💉';
     const description = 'Die Nächsten Impftermine in Oberösterreich!';

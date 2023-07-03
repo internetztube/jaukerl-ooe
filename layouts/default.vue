@@ -1,7 +1,11 @@
 <template>
   <b-container class="mt-1 mb-5">
-    <Creator class="mb-5"/>
-    <router-view/>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <Creator class="mb-5"/>
+        <router-view/>
+      </div>
+    </div>
   </b-container>
 </template>
 
