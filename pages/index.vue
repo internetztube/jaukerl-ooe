@@ -43,32 +43,15 @@ import {mapGetters, mapState} from 'vuex'
 
 export default {
   head() {
-    const title = 'Die Nächsten Impftermine von ooe-impft.at! 💉';
-    const description = 'Die Nächsten Impftermine in Oberösterreich!';
-    const shareImage = 'https://jaukerl-ooe.m8.at/share.png'
+    const title = 'jaukerl-ooe.m8.at';
     return {
       title,
       meta: [
         {property: 'og:type', content: 'website'},
         {property: 'og:title', content: title},
-        {property: 'og:description', content: description},
         {property: 'og:url', content: 'https://jaukerl-ooe.m8.at/'},// here it is just ngrok for my test
-        {property: 'og:image', content: shareImage},
         {property: 'twitter:title', content: title},
-        {property: 'twitter:description', content: description},
-        {property: 'twitter:card', content: 'summary_large_image'},
-        {property: 'twitter:image', content: shareImage},
       ],
-      scripts: [
-        {
-          hid: 'googleAnalytics', innerHTML: `
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PMMFLL');
-        `
-        }
-      ],
-      __dangerouslyDisableSanitizersByTagID: {
-        googleAnalytics: ['innerHTML'],
-      }
     }
   },
   computed: {
